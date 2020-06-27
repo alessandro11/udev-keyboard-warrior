@@ -1,5 +1,20 @@
 #!/usr/bin/env sh
 
+LOG_FILE=""
+enable_debug() {
+    LOG_FILE=$(mktemp --suffix="-setkb.sh-$(date +%FT%T).log")
+    exec 4>> "$LOG_FILE"
+    exec 5>> "$LOG_FILE"
+    exec 1>&4
+    exec 2>&5
+    set -x
+}
+#enable_debug
+
+#
+# if no action has been defined, assume add
+#
+ACTION=${ACTION:-"add"}
 #
 # if no layout has been passed at parameter 1, assume
 # us layout.
@@ -105,5 +120,14 @@ case "$ACTION" in
         fi
 		;;
 esac
+
+disable_debug() {
+    set +x
+    exec 4>&1
+    exec 5>&2
+    exec 4>&-
+    exec 5>&-
+}
+#disable_debug
 
 exit 0
