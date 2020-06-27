@@ -90,7 +90,7 @@ case "$ACTION" in
 		else
             # no X running; variant is ignored
             get_kblayout_variant layout variant 0
-			loadkeys /usr/share/kbd/keymaps/i386/qwerty/${layout}.map.gz
+			sudo loadkeys /usr/share/kbd/keymaps/i386/qwerty/${layout}.map.gz
 		fi
 		;;
 
@@ -101,7 +101,7 @@ case "$ACTION" in
         else
             # no X running; variant is ignored
             get_kblayout_variant layout variant 0
-			loadkeys /usr/share/kbd/keymaps/i386/qwerty/${layout}.map.gz
+			sudo loadkeys /usr/share/kbd/keymaps/i386/qwerty/${layout}.map.gz
         fi
 		;;
 esac
